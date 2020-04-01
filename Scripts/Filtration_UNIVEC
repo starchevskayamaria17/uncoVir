@@ -15,7 +15,7 @@ cat ${x}_2.fastq | awk '{if(NR%4==1) {printf(">%s\n",substr($0,2));} else if(NR%
 
 #Выравниваем прочтения на базу данных UNIVEC, используя BLAST (параметры указаны в соответствие с рекомендациями VecScreen (https://www.ncbi.nlm.nih.gov/tools/vecscreen/about/)
 
-cd {ПУТЬ ДО ДИРЕКТОРИИ}/db/ncbi/univec
+cd db/UNIVEC/
 blastn \
 		-reward 1 \
 		-penalty -5 \
@@ -26,9 +26,9 @@ blastn \
 		-evalue 700 \
 		-searchsp 1750000000000 \
 		-db UniVec_Core.db \
-		-query {ПУТЬ ДО ДИРЕКТОРИИ VirMer}/${x}_1.fasta \
+		-query ../../${x}_1.fasta \
 		-outfmt 6 \
-		-out {ПУТЬ ДО ДИРЕКТОРИИ VirMer}/${x}_1_blast_univec_result.csv  \
+		-out ../../${x}_1_blast_univec_result.csv  \
 
 blastn \
 		-reward 1 \
@@ -40,12 +40,12 @@ blastn \
 		-evalue 700 \
 		-searchsp 1750000000000 \
 		-db UniVec_Core.db \
-		-query {ПУТЬ ДО ДИРЕКТОРИИ VirMer}/${x}_2.fasta \
+		-query ../../${x}_2.fasta \
 		-outfmt 6 \
-		-out {ПУТЬ ДО ДИРЕКТОРИИ VirMer}/${x}_2_blast_univec_result.csv  \
+		-out ../../${x}_2_blast_univec_result.csv  \
 
 
-cd {ПУТЬ ДО ДИРЕКТОРИИ VirMer}/
+cd ../../
 
 #Экстрагируем первый столбец отчета BLAST, в котором содержатся ID
 
@@ -53,13 +53,13 @@ cut -f 1 ${x}_1_blast_univec_result.csv > ${x}_1_id_univec.txt
 cut -f 1 ${x}_2_blast_univec_result.csv > ${x}_2_id_univec.txt
 
 #Фильтруем исходный fastq файл в соответствие с ID, выравненными на базу UNIVEC (используем параметр '-n' для инвертированного отбора прочтений) 
-{ПУТЬ ДО ДИЕРКТОРИИ seqfilter}/seqfilter \
+seqfilter \
 			-n \
 			-i ${x}_1.fastq \
 			-l ${x}_1_id_univec.txt \
 			-o ${x}_1_1.fastq \
 
-{ПУТЬ ДО ДИЕРКТОРИИ seqfilter}/seqfilter \
+seqfilter \
 			-n \
 			-i ${x}_2.fastq \
 			-l ${x}_2_id_univec.txt \
