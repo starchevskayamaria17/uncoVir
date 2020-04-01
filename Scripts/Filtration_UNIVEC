@@ -1,0 +1,77 @@
+#!bin/bash
+#Рабочая директория - VirMer
+
+
+#Данный скрипт позволяет экстрагировать ID выравненных на базу данных UNIVEC прочтений, а затем, используя seqfilter провести фильтрацию исходного fastq-файла в соответствие со списком отобранных id
+
+while read x
+do
+
+#Конвертируем fastq в fasta формат
+
+cat ${x}_1.fastq | awk '{if(NR%4==1) {printf(">%s\n",substr($0,2));} else if(NR%4==2) print;}' > ${x}_1.fasta
+cat ${x}_2.fastq | awk '{if(NR%4==1) {printf(">%s\n",substr($0,2));} else if(NR%4==2) print;}' > ${x}_2.fasta
+
+
+#Выравниваем прочтения на базу данных UNIVEC, используя BLAST (параметры указаны в соответствие с рекомендациями VecScreen (https://www.ncbi.nlm.nih.gov/tools/vecscreen/about/)
+
+cd {ПУТЬ ДО ДИРЕКТОРИИ}/db/ncbi/univec
+blastn \
+		-reward 1 \
+		-penalty -5 \
+		-gapopen 3 \
+		-gapextend 3 \
+		-dust yes \
+		-soft_masking true \
+		-evalue 700 \
+		-searchsp 1750000000000 \
+		-db UniVec_Core.db \
+		-query {ПУТЬ ДО ДИРЕКТОРИИ VirMer}/${x}_1.fasta \
+		-outfmt 6 \
+		-out {ПУТЬ ДО ДИРЕКТОРИИ VirMer}/${x}_1_blast_univec_result.csv  \
+
+blastn \
+		-reward 1 \
+		-penalty -5 \
+		-gapopen 3 \
+		-gapextend 3 \
+		-dust yes \
+		-soft_masking true \
+		-evalue 700 \
+		-searchsp 1750000000000 \
+		-db UniVec_Core.db \
+		-query {ПУТЬ ДО ДИРЕКТОРИИ VirMer}/${x}_2.fasta \
+		-outfmt 6 \
+		-out {ПУТЬ ДО ДИРЕКТОРИИ VirMer}/${x}_2_blast_univec_result.csv  \
+
+
+cd {ПУТЬ ДО ДИРЕКТОРИИ VirMer}/
+
+#Экстрагируем первый столбец отчета BLAST, в котором содержатся ID
+
+cut -f 1 ${x}_1_blast_univec_result.csv > ${x}_1_id_univec.txt
+cut -f 1 ${x}_2_blast_univec_result.csv > ${x}_2_id_univec.txt
+
+#Фильтруем исходный fastq файл в соответствие с ID, выравненными на базу UNIVEC (используем параметр '-n' для инвертированного отбора прочтений) 
+{ПУТЬ ДО ДИЕРКТОРИИ seqfilter}/seqfilter \
+			-n \
+			-i ${x}_1.fastq \
+			-l ${x}_1_id_univec.txt \
+			-o ${x}_1_1.fastq \
+
+{ПУТЬ ДО ДИЕРКТОРИИ seqfilter}/seqfilter \
+			-n \
+			-i ${x}_2.fastq \
+			-l ${x}_2_id_univec.txt \
+			-o ${x}_2_1.fastq \
+
+rm ${x}_1_id_univec.txt
+rm ${x}_2_id_univec.txt
+rm ${x}_1_blast_univec_result.csv
+rm ${x}_2_blast_univec_result.csv
+rm ${x}_1.fasta
+rm ${x}_2.fasta
+mv ${x}_1_1.fastq ${x}_1.fastq
+mv ${x}_2_1.fastq ${x}_2.fastq 
+
+done<$1
