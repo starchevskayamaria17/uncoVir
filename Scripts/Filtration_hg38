@@ -1,0 +1,76 @@
+#!bin/bash
+
+#Данный скрипт позволяет экстрагировать ID выравненных на геном hg38 прочтений, а затем, используя seqfilter провести фильтрацию исходного fastq-файла в соответствие со списком отобранных id
+
+while read x
+do
+
+#Экстрагируем идентификаторы fastq-файлов, убрав символы '@', '/1', '/2'. Необходимо для корректной работы diff далее 
+
+grep '/1'  ${x}_1.paired.fastq > id_${x}_1.txt
+grep '/2'  ${x}_2.paired.fastq > id_${x}_2.txt
+
+cat id_${x}_1.txt | cut -c 2- > file1.txt
+cat id_${x}_2.txt | cut -c 2- > file2.txt
+
+rev file1.txt | cut -c 3- | rev > id_${x}_1.txt
+rev file2.txt | cut -c 3- | rev > id_${x}_2.txt
+
+rm file1.txt
+rm file2.txt
+
+#Получим уникальные идентификаторы выравненных на геном hg38 прочтений 
+#Ознакомиться более подробно с командами samtools можно по ссылке: http://www.htslib.org/doc/samtools.html
+
+samtools view -bS align_hg38_${x}.sam > align_hg38_${x}.bam
+samtools view -b -F 4  align_hg38_${x}.bam > align_hg38_${x}_mapped.bam
+samtools view -h -o align_hg38_${x}_mapped.sam align_hg38_${x}_mapped.bam
+cut -f1 align_hg38_${x}_mapped.sam > ID.txt
+grep -v '@' ID.txt > id.txt
+cat id.txt | uniq > id_1.txt
+mv id_1.txt id.txt
+
+#Получим ID только невыравненных прочтений (сравниваем полный список ID прочтений со списком ID выравненных на геном с помощью diff)
+
+diff id_${x}_1.txt id.txt > id_unmapped_hg_1.txt
+diff id_${x}_2.txt id.txt > id_unmapped_hg_2.txt
+
+#Приводим ID в исходный формат
+
+grep '<' id_unmapped_hg_1.txt > id_1.txt
+cat id_1.txt | cut -c 3- > id_unmapped_1.txt
+
+grep '<' id_unmapped_hg_2.txt > id_2.txt
+cat id_2.txt | cut -c 3- > id_unmapped_2.txt
+
+awk '{print $0"/1"}' id_unmapped_1.txt > id_unmapped_hg_1.txt
+awk '{print $0"/2"}' id_unmapped_2.txt > id_unmapped_hg_2.txt
+
+#Выводим только невыравненные на геном hg38 прочтения в отдельный fastq-файл
+
+/seqfilter \
+		-i ${x}_1.paired.fastq  \
+		-l id_unmapped_hg_1.txt \
+		-o  ${x}_1_nohg38.fastq  \
+
+/seqfilter \
+		-i ${x}_2.paired.fastq \
+		-l id_unmapped_hg_2.txt \
+		-o ${x}_2_nohg38.fastq  \
+
+rm id_${x}_1.txt
+rm id_${x}_2.txt
+rm align_hg38_${x}.bam
+rm align_hg38_${x}_mapped.bam
+rm align_hg38_${x}_mapped.sam
+rm id.txt
+rm ID.txt
+rm id_unmapped_1.txt
+rm id_unmapped_2.txt
+rm id_unmapped_hg_1.txt
+rm id_unmapped_hg_2.txt
+rm id_1.txt
+rm id_2.txt
+
+done<$1
+
