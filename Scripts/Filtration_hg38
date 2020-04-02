@@ -51,12 +51,12 @@ awk '{print $0"/2"}' id_unmapped_2.txt > id_unmapped_hg_2.txt
 /seqfilter \
 		-i ${x}_1.paired.fastq  \
 		-l id_unmapped_hg_1.txt \
-		-o  ${x}_1_nohg38.fastq  \
+		-o  ${x}_1.fastq  \
 
 /seqfilter \
 		-i ${x}_2.paired.fastq \
 		-l id_unmapped_hg_2.txt \
-		-o ${x}_2_nohg38.fastq  \
+		-o ${x}_2.fastq  \
 
 rm id_${x}_1.txt
 rm id_${x}_2.txt
