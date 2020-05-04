@@ -5,3 +5,9 @@ awk '!/^>/ { printf "%s", $0; n = "\n" } /^>/ { print n $0; n = "" } END { print
 
 2. Извлечь последовательности из fasta-файла по идентификатору (id.txt список id без '>', in.fasta последовательности без разрывов/пробелов):
 seqtk subseq in.fasta id.txt > out.fasta
+
+3. Разбить мульти fasta-файл на отдельные файлы (название файла = id последовательности):
+faidx --split-files in.fasta
+
+4. Посчитать количество определенных символов в файле:
+cat in.file | tr -cd "SYMBOL" | wc -m
