@@ -1,0 +1,7 @@
+#Вытаскивает ID из филогенетического дерева, формата newick
+from Bio import Phylo
+tree = Phylo.read("Tree.nwk", "newick")
+for node in tree.find_clades():
+    #Don't print anything if there is no name
+    if node.name:
+        print(node.name)
