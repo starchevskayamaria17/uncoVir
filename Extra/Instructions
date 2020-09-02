@@ -11,3 +11,6 @@ faidx --split-files in.fasta
 
 4. Посчитать количество определенных символов в файле:
 cat in.file | tr -cd "SYMBOL" | wc -m
+
+5. Заменить символ на новый символ (включая замену '/', ' ')
+awk '{ gsub("symbol_old","symbol_new"); print } in.file > out.file
