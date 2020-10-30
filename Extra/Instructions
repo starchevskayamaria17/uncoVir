@@ -17,3 +17,6 @@ awk '{ gsub("symbol_old","symbol_new"); print }' in.file > out.file
 
 6. Извлечь из fastq все последовательности, содержащие подпоследовательность
 seqkit grep --by-seq --max-mismatch 1 --pattern "ATCGAAG" in.fastq > out.fastq 
+
+7. Удаляет дублирующие последовательности по id
+awk '/^>/{f=!d[$1];d[$1]=1}f' in.fasta > outNoDubl.fasta 
