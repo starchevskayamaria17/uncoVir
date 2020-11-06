@@ -20,3 +20,9 @@ seqkit grep --by-seq --max-mismatch 1 --pattern "ATCGAAG" in.fastq > out.fastq
 
 7. Удаляет дублирующие последовательности по id
 awk '/^>/{f=!d[$1];d[$1]=1}f' in.fasta > outNoDubl.fasta 
+
+8. Вырезать первый столбец, удалить часть строки после символа "/" и оставить уникальные значния
+cut -f1 in.csv | cut -d'/' -f1 | sort -n | uniq > out.txt
+
+
+
