@@ -28,4 +28,5 @@ cut -f1 in.csv | cut -d'/' -f1 | sort -n | uniq > out.txt
 ls -l /path/to/dir | grep vcf.gz.tbi | wc -l
 
 
-
+удалить доопределенного символа 
+echo "Якутская;53" |cut -d";" -f2
