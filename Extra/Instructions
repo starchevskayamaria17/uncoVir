@@ -27,6 +27,8 @@ cut -f1 in.csv | cut -d'/' -f1 | sort -n | uniq > out.txt
 9. Подсчитать число файлов определенного разрешения в папке. Для примера файлы с разрешением vcf.gz.tbi
 ls -l /path/to/dir | grep vcf.gz.tbi | wc -l
 
-
-удалить доопределенного символа 
+10. Удалить часть строки до определенного символа 
 echo "Якутская;53" |cut -d";" -f2
+
+11. Переименовать fasta на основе списка id 
+awk 'NR==FNR{names[NR]=$0; next}  /^>/{$1=">"names[++c]}1' names all.fasta | cut -d' ' -f 1 > new_1.fasta
