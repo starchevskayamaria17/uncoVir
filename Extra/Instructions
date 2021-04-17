@@ -32,3 +32,6 @@ echo "Якутская;53" |cut -d";" -f2
 
 11. Переименовать fasta на основе списка id 
 awk 'NR==FNR{names[NR]=$0; next}  /^>/{$1=">"names[++c]}1' names all.fasta | cut -d' ' -f 1 > new_1.fasta
+
+12. Переименовать ID fasta, добавив "имя файла _" в начало хедера
+awk '/>/{sub(">","&"FILENAME"_");sub(/\.fasta/,x)}1' input.fa > output.fa
