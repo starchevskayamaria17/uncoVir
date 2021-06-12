@@ -35,3 +35,5 @@ awk 'NR==FNR{names[NR]=$0; next}  /^>/{$1=">"names[++c]}1' names all.fasta | cut
 
 12. Переименовать ID fasta, добавив "имя файла _" в начало хедера
 awk '/>/{sub(">","&"FILENAME"_");sub(/\.fasta/,x)}1' input.fa > output.fa
+
+sed '/^[^>]/ s/[^AGTC]/N/gi'
