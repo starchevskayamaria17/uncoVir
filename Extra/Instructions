@@ -36,4 +36,22 @@ awk 'NR==FNR{names[NR]=$0; next}  /^>/{$1=">"names[++c]}1' names all.fasta | cut
 12. Переименовать ID fasta, добавив "имя файла _" в начало хедера
 awk '/>/{sub(">","&"FILENAME"_");sub(/\.fasta/,x)}1' input.fa > output.fa
 
+13. Заменить все символы в fasta на N, кроме AGTC
 sed '/^[^>]/ s/[^AGTC]/N/gi'
+
+14. Переименовать по словарю список: 
+awk -f sc.awk dict.csv list.txt
+Содержимое sc.awk
+NR == FNR {
+  rep[$1] = $2
+  next
+} 
+
+{
+  for (key in rep)
+    gsub(key, rep[key])
+  print
+}
+
+15. Сравнить два файла, напечать match в отдельный столбец при совпадении строки: 
+awk 'NR==FNR {a[$1]++; next} $1 in a {$2="match"}1' File2 File1
