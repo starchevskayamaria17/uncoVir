@@ -66,5 +66,5 @@ done
 
 for f in _*.fa
 do
-   transeq -frame $f $f.sixpack.fa
+   transeq -frame 6 -sequence $f -outseq $f.sixpack.fa
 done
