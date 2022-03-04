@@ -56,10 +56,15 @@ NR == FNR {
 15. Сравнить два файла, напечать match в отдельный столбец при совпадении строки: 
 awk 'NR==FNR {a[$1]++; next} $1 in a {$2="match"}1' File2 File1
 
-16. Транслировать нуклеотидные последовательности (из мультифасты) в аминокислотные в 6 ORF
+16. Транслировать нуклеотидные последовательности (из мультифасты) во всевозможные ORF (sixpack) или в аминислотные последовательности в 6 рамках (transeq)
 awk '/^>/ {if(x>0) close(outname); x++; outname=sprintf("_%d.fa",x); print > outname;next;} {if(x>0) print >> outname;}' *.fasta
 
 for f in _*.fa
 do
     sixpack -sequence $f -outfile $f.sixpack.out -outseq $f.sixpack.fa
+done
+
+for f in _*.fa
+do
+   transeq -frame $f $f.sixpack.fa
 done
