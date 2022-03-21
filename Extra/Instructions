@@ -68,3 +68,7 @@ for f in _*.fa
 do
    transeq -frame 6 -sequence $f -outseq $f.sixpack.fa
 done
+
+17. Удалить определенное число символов из определенной колонки
+(удалит 3 символа из второй колонки)
+ awk -v ncr=2 '{$2=substr($2,0,length($2)-ncr)}1' file.txt 
