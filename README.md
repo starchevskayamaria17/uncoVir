@@ -6,6 +6,15 @@ Pipeline for viruses detection in NGS data.
 conda env create snakemake.yml
 ```
 
+Creating databases for classification using BLAST
+
+Download databases of nucleotide and amino acid sequences. Attention, the size of the database NCBI nt in compressed format is 179G, and the database NCBI nr is 128G. After unzipping, you will need about 500G of free disk space. You can use other smaller databases for your needs.
+
+```
+wget https://ftp.ncbi.nlm.nih.gov/blast/db/FASTA/nt.gz
+wget https://ftp.ncbi.nlm.nih.gov/blast/db/FASTA/nr.gz
+
+
 
 
 
