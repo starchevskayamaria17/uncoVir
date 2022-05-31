@@ -6,24 +6,55 @@ Pipeline for viruses detection in NGS data.
 conda env create snakemake.yml
 ```
 
-Creating databases for classification using BLAST
+1) Reference genome indexing
 
-Download databases of nucleotide and amino acid sequences. Warning, the size of the database NCBI nt in compressed format is 179G, and the database NCBI nr is 128G. After unzipping, you will need about 500G of free disk space. You can use other smaller databases for your needs.
+Download human genome and host genome, and unzip archives. 
+
+2) Creating databases for classification using BLAST
+
+Download databases of nucleotide and amino acid sequences and unzip archives. Warning, the size of the database NCBI nt in compressed format is 179G, and the database NCBI nr is 128G. After unzipping, you will need about 500G of free disk space. You can use other smaller databases for your needs.
 
 ```
 wget https://ftp.ncbi.nlm.nih.gov/blast/db/FASTA/nt.gz
 wget https://ftp.ncbi.nlm.nih.gov/blast/db/FASTA/nr.gz
-```
-
-Unzip archives and create BLAST databases. Warning, the BLAST program is required. Work in snakemake.yml environment.
-
-```
 unzip nt.gz nr.gz
+```
+
+Create BLAST databases. Warning, the BLAST program is required. Work in snakemake.yml environment.
+
+```
 makeblastdb -in nt -dbtype nucl -out [:path:]/nt
 makeblastdb -in nr -dbtype prot -out [:path:]/nr
 ```
 
+3) Creating databases for classification using Kraken2
 
+As an example, the viral nucleotide sequences from NCBI RefSeq database are used. You can create a custom database for any nucleotide sequences in the format fasta.
+
+```
+wget https://ftp.ncbi.nlm.nih.gov/refseq/release/viral/viral.1.1.genomic.fna.gz
+wget https://ftp.ncbi.nlm.nih.gov/refseq/release/viral/viral.2.1.genomic.fna.gz
+wget https://ftp.ncbi.nlm.nih.gov/refseq/release/viral/viral.3.1.genomic.fna.gz
+unzip viral.?.1.genomic.fna.gz
+```
+
+Get the NCBI taxonomy files
+```
+kraken2-build --download-taxonomy --db viral_custom
+```
+
+Add custom reference data
+```
+kraken2-build --add-to-library viral.1.1.genomic.fna --db viral_custom
+kraken2-build --add-to-library viral.2.1.genomic.fna --db viral_custom
+kraken2-build --add-to-library viral.3.1.genomic.fna --db viral_custom
+```
+Finalize the database
+```
+kraken2-build --build --db $DBNAME
+```
+
+4) 
 wget https://ftp.ncbi.nih.gov/pub/taxonomy/accession2taxid/prot.accession2taxid.gz
 
 
