@@ -8,7 +8,11 @@ conda env create snakemake.yml
 
 1) Reference genome indexing
 
-Download human genome and host genome, and unzip archives. 
+Download human genome and host genome, and unzip archives. The genome of the Colorado potato beetle was used as the host organism. You can specify the genome of any organism you are interested in.
+
+```
+wget 
+```
 
 2) Creating databases for classification using BLAST
 
