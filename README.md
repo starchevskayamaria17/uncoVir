@@ -8,11 +8,23 @@ conda env create snakemake.yml
 
 Creating databases for classification using BLAST
 
-Download databases of nucleotide and amino acid sequences. Attention, the size of the database NCBI nt in compressed format is 179G, and the database NCBI nr is 128G. After unzipping, you will need about 500G of free disk space. You can use other smaller databases for your needs.
+Download databases of nucleotide and amino acid sequences. Warning, the size of the database NCBI nt in compressed format is 179G, and the database NCBI nr is 128G. After unzipping, you will need about 500G of free disk space. You can use other smaller databases for your needs.
 
 ```
 wget https://ftp.ncbi.nlm.nih.gov/blast/db/FASTA/nt.gz
 wget https://ftp.ncbi.nlm.nih.gov/blast/db/FASTA/nr.gz
+```
+
+Unzip archives and create BLAST databases. Warning, the BLAST program is required. Work in snakemake.yml environment.
+
+```
+unzip nt.gz nr.gz
+makeblastdb -in nt -dbtype nucl -out [:path:]/nt
+makeblastdb -in nr -dbtype prot -out [:path:]/nr
+```
+
+
+wget https://ftp.ncbi.nih.gov/pub/taxonomy/accession2taxid/prot.accession2taxid.gz
 
 
 
