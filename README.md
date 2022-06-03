@@ -59,9 +59,7 @@ kraken2-build --build --db $DBNAME
 ```
 
 4) 
-wget https://ftp.ncbi.nih.gov/pub/taxonomy/accession2taxid/prot.accession2taxid.gz
-
-
+wget https://ftp.ncbi.nlm.nih.gov/pub/taxonomy/accession2taxid/nucl_gb.accession2taxid.gz
 
 
 
