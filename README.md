@@ -1,14 +1,14 @@
 # VirMercenary
 
-Pipeline for viruses detection in NGS data. 
+#Pipeline for viruses detection in NGS data. 
 
 ```
 conda env create snakemake.yml
 ```
 
-2. Preparation of reference genomes and databases. Creating a configuration file. 
+##2. Preparation of reference genomes and databases. Creating a configuration file. 
 
-1) Reference genome indexing
+###1) Reference genome indexing
 
 Download human genome and host genome, and unzip archives. The genome of the Colorado potato beetle was used as the host organism. You can specify the genome of any organism you are interested in.
 
@@ -24,7 +24,7 @@ bwa index GCA_000500325.2_Ldec_2.0_genomic.fna
 bwa index GCA_000001405.28_GRCh38.p13_genomic.fna
 ```
 
-2) Creating databases for remove contamination and classification contigs using BLAST
+###2) Creating databases for remove contamination and classification contigs using BLAST
 
 Download databases of synthetic, nucleotide and amino acid sequences and unzip archives. Warning, the size of the database NCBI nt in compressed format is 179G, and the database NCBI nr is 128G. After unzipping, you will need about 500G of free disk space. You can use other smaller databases for your needs.
 
@@ -43,7 +43,7 @@ makeblastdb -in nt -dbtype nucl -out nt
 makeblastdb -in nr -dbtype prot -out nr
 ```
 
-3) Creating databases for classification using Kraken2
+###3) Creating databases for classification using Kraken2
 
 As an example, the viral nucleotide sequences from NCBI RefSeq database are used. You can create a custom database for any nucleotide sequences in the format fasta.
 
@@ -70,7 +70,7 @@ Finalize the database
 kraken2-build --build --db $DBNAME
 ```
 
-4) 
+###4) 
 wget https://ftp.ncbi.nlm.nih.gov/pub/taxonomy/accession2taxid/nucl_gb.accession2taxid.gz
 
 
