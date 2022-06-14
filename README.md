@@ -80,7 +80,7 @@ As input files, the pipeline receives paired-end sequencing data in fastq-format
 #### 1. Data preprocessing. 
 The trimmomatic tool performs preliminary cleaning of data from adapters (the path to the file with adapters must be specified in the config file) and low-quality reads with standard parameters for most data: SLIDINGWINDOW:6:10 LEADING:13 TRAILING:13 MINLEN:50.
 #### 2. Removal of contamination. 
-Filtering against the human genome using the bwa-mem program with parameters: -B 10 -O 17,17 -E 17,17'. Filtering using the BLASTn program with specific parameters (-reward 1 -penalty -5 -gapopen 3 -gapextend 3  -dust yes -soft_masking true -evalue 700 -searchsp 1750000000000) against a database of synthetic sequences NCBI UniVec.
+Filtering against the human genome using the bwa-mem program with parameters: -B 10 -O 17,17 -E 17,17'. Filtering using the BLASTn program against a database of synthetic sequences NCBI UniVec with specific parameters: -reward 1 -penalty -5 -gapopen 3 -gapextend 3  -dust yes -soft_masking true -evalue 700 -searchsp 1750000000000.
 #### 3. Selection of non-aligned reads for the host genome.
 Filtering against the host genome using the bwa-mem program. Further, **pipeline works only with reads that are non-aligned to the host genome**.
 #### 4. Assembly of the metagenome into contigs.
