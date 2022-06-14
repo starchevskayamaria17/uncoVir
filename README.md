@@ -74,7 +74,7 @@ kraken2-build --build --db $DBNAME
 ### 4) 
 wget https://ftp.ncbi.nlm.nih.gov/pub/taxonomy/accession2taxid/nucl_gb.accession2taxid.gz
 
-## 
+## 3. Description of the pipeline
 
 As input files, the pipeline receives paired-end sequencing data in fastq-format. The work of the pipeline can be divided into the following stages (Fig. 1):
 #### 1. Data preprocessing. 
@@ -91,3 +91,9 @@ The contigs filtered by length and coverage are classified by the program BLASTn
 Non-aligned reads to the host genome are classified by the program Kraken2 against Kraken2 databases (see p.2.3). 
 #### 7. Alignment of reads on virus genomes. 
 Non-aligned reads to the host genome are aligned to viral genomes using a program Bowtie2. This method of classification makes it possible to estimate how evenly the viral genome is covered by reads and to take into account reads not collected into contigs.
+
+## 4. Results
+#### 1. Statistics. 
+#### 2. Classification table based on the BLASTx (NCBI nr). 
+#### 3. Classification table based on the BLASTx (NCBI nr). 
+#### 4. Classification table based on the BLASTx (NCBI nr). 
