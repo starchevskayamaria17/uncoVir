@@ -6,19 +6,30 @@ Pipeline for viruses detection in NGS data.
 conda env create snakemake.yml
 ```
 
+2. Preparation of reference genomes and databases. Creating a configuration file. 
+
 1) Reference genome indexing
 
 Download human genome and host genome, and unzip archives. The genome of the Colorado potato beetle was used as the host organism. You can specify the genome of any organism you are interested in.
 
 ```
-wget 
+wget https://ftp.ncbi.nlm.nih.gov/genomes/genbank/invertebrate/Leptinotarsa_decemlineata/latest_assembly_versions/GCA_000500325.2_Ldec_2.0/GCA_000500325.2_Ldec_2.0_genomic.fna.gz
+wget https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/001/405/GCA_000001405.28_GRCh38.p13/GCA_000001405.28_GRCh38.p13_genomic.fna.gz
+unzip *.gz
 ```
 
-2) Creating databases for classification using BLAST
+Index genomes for subsequent alignment using the program bwa-mem
+```
+bwa index GCA_000500325.2_Ldec_2.0_genomic.fna
+bwa index GCA_000001405.28_GRCh38.p13_genomic.fna
+```
 
-Download databases of nucleotide and amino acid sequences and unzip archives. Warning, the size of the database NCBI nt in compressed format is 179G, and the database NCBI nr is 128G. After unzipping, you will need about 500G of free disk space. You can use other smaller databases for your needs.
+2) Creating databases for remove contamination and classification contigs using BLAST
+
+Download databases of synthetic, nucleotide and amino acid sequences and unzip archives. Warning, the size of the database NCBI nt in compressed format is 179G, and the database NCBI nr is 128G. After unzipping, you will need about 500G of free disk space. You can use other smaller databases for your needs.
 
 ```
+wget https://ftp.ncbi.nlm.nih.gov/pub/UniVec/UniVec
 wget https://ftp.ncbi.nlm.nih.gov/blast/db/FASTA/nt.gz
 wget https://ftp.ncbi.nlm.nih.gov/blast/db/FASTA/nr.gz
 unzip nt.gz nr.gz
@@ -27,8 +38,9 @@ unzip nt.gz nr.gz
 Create BLAST databases. Warning, the BLAST program is required. Work in snakemake.yml environment.
 
 ```
-makeblastdb -in nt -dbtype nucl -out [:path:]/nt
-makeblastdb -in nr -dbtype prot -out [:path:]/nr
+makeblastdb -in UniVec -dbtype nucl -out UniVec
+makeblastdb -in nt -dbtype nucl -out nt
+makeblastdb -in nr -dbtype prot -out nr
 ```
 
 3) Creating databases for classification using Kraken2
@@ -62,6 +74,9 @@ kraken2-build --build --db $DBNAME
 wget https://ftp.ncbi.nlm.nih.gov/pub/taxonomy/accession2taxid/nucl_gb.accession2taxid.gz
 
 
+SLIDINGWINDOW:6:10 LEADING:13 TRAILING:13 MINLEN:50
+
+ -B 10 -O 17,17 -E 17,17
 
 Предполагается, что данные секвенирования представлены в виде forward/reverse файлов в формате FASTQ. 
 
