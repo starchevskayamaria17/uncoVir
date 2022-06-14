@@ -1,6 +1,7 @@
-# VirMercenary
-
 # Pipeline for viruses detection in NGS data. 
+
+## Installation and launch
+
 
 ```
 conda env create snakemake.yml
@@ -73,55 +74,20 @@ kraken2-build --build --db $DBNAME
 ### 4) 
 wget https://ftp.ncbi.nlm.nih.gov/pub/taxonomy/accession2taxid/nucl_gb.accession2taxid.gz
 
+## 
 
-SLIDINGWINDOW:6:10 LEADING:13 TRAILING:13 MINLEN:50
-
- -B 10 -O 17,17 -E 17,17
-
-Предполагается, что данные секвенирования представлены в виде forward/reverse файлов в формате FASTQ. 
-
-
-
-Для single прочтений и других форматов смотрите в директории Extra. 
-Также предполагается, что проведен контроль качетсва образцов (FastQC) и данные предобработаны (удалены адаптеры, низкокачественные и короткие последовательности). Примеры обработки можно найти в директории Extra.
-
-До начала работы запустите: source export_path.sh.
-
-Подготовьте файл db.sh, добавив все необходимые базы данных и референсные геномы. Запустите.
-
-Последовательность запуска скриптов:
-1. rename.sh 
-
-Необязательно. Переименовывает id fastq-файла в соответствие с названием образца. Удобно в случае последующего пулирования образцов.
-
-2. Filtration_UNIVEC.sh 
-
-Контроль контаминации: элиминирование синтетических последовательностей (векторов, линкеров, адаптеров и др.)
-
-3. repair.sh
-
-Позволяет сохранить парность прочтений.
-
-4. align_hg38.sh
-
-Выравнивание прочтений на геном человека. Вы можете также указать любой другой геном. 
-
-5. filtration_hg38.sh
-
-Фильтрация выравненных на геном человека прочтений. Указав другой геном в п.4 прочтения будут отфильтрованы соответственно на представленный геном. 
-
-6. Assembly_spades.sh
-
-Сборка фильтрованных прочтений с использованим SPAdes.
-
-7. Assembly_velvet.sh 
-
-Сборка фильтрованных прочтения с использованием VELVET.
-
-8. selected_spades.sh
-
-Отбор контигов, полученных в результате сборки SPAdes.
-
-9. selected_velvet.sh
-
-Отбор контигов, полученных в результате сборки VELVET.
+As input files, the pipeline receives paired-end sequencing data in fastq-format. The work of the pipeline can be divided into the following stages (Fig. 1):
+#### 1. Data preprocessing. 
+The trimmomatic tool performs preliminary cleaning of data from adapters (the path to the file with adapters must be specified in the config file) and low-quality reads with standard parameters for most data: SLIDINGWINDOW:6:10 LEADING:13 TRAILING:13 MINLEN:50.
+#### 2. Removal of contamination. 
+Filtering against the human genome using the bwa-mem program with parameters: -B 10 -O 17,17 -E 17,17'. Filtering using the BLASTn program with specific parameters (-reward 1 -penalty -5 -gapopen 3 -gapextend 3  -dust yes -soft_masking true -evalue 700 -searchsp 1750000000000) against a database of synthetic sequences NCBI UniVec.
+#### 3. Selection of non-aligned reads for the host genome.
+Filtering against the host genome using the bwa-mem program. Further, **pipeline works only with reads that are non-aligned to the host genome**.
+#### 4. Assembly of the metagenome into contigs.
+Non-aligned reads to the host genome are collected using SPADes with the option --meta. Contigs are filtered by length over 500 and coverage over 5.
+#### 5. Classification of contigs. 
+The contigs filtered by length and coverage are classified by the program BLASTn against the database NCBI nt. Unclassified contigs are selected and classified using BLASTx program against the database NCBI nr.
+#### 6. Analysis of the spectrum of k-mers.
+Non-aligned reads to the host genome are classified by the program Kraken2 against Kraken2 databases (see p.2.3). 
+#### 7. Alignment of reads on virus genomes. 
+Non-aligned reads to the host genome are aligned to viral genomes using a program Bowtie2. This method of classification makes it possible to estimate how evenly the viral genome is covered by reads and to take into account reads not collected into contigs.
