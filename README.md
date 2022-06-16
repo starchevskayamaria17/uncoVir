@@ -94,8 +94,9 @@ Non-aligned reads to the host genome are aligned to viral genomes using a progra
 
 ## 4. Results
 #### 1. Statistics. 
+
 | Name | Number of reads or contigs | Total length of reads or contigs, bp | Minimum length of reads or contigs | Average length of reads or contigs | Maximum length of reads or contigs | Q1 | Q2 | Q3 | N50 | Q20(%) | Q30(%) |
-|----||----||----||----||----||----||----||----||----||----||----||----|
+|----|----|----|----|----|----|----|----|----|----|----|----|
 | raw forward/reverse read | 4629691 | 420444472 | 80 | 90.8 | 91 | 91.0 | 91.0 | 91.0 | 91 | 99.97 | 99.11 |
 | clipped forward/reverse read | 4629691 | 419997824 | 76 | 90.7 | 91 | 91.0 | 91.0 | 91.0 | 91 | 99.97 | 99.11 |
 | clipped unpair forward read | 0 | 0 | 0 | 0.0 | 0 | 0.0 | 0.0 | 0.0 | 0 | 0.0 | 0.0 |
