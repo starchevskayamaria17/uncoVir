@@ -95,8 +95,8 @@ Non-aligned reads to the host genome are aligned to viral genomes using a progra
 ## 4. Results
 #### 1. Statistics. 
 #### 2. Classification table based on the BLASTn (NCBI nt).
-
-```
+  
+  
 | qseqid | sseqid | pident | length | mismatch | gapopen | qstart | qend | sstart | send | evalue | bitscore | accession.version | taxid | kindom | phylum | class | order | family | genus | species |
 |--------|--------|--------|--------|--------|--------|--------|--------|--------|--------|--------|--------|--------|--------|--------|--------|--------|--------|--------|--------|
 | NODE_1_length_9215_cov_18.424017 | EF026075.1 | 99.826 | 9210 | 16 | 0 | 1 | 9210 | 484 | 9693 | 0.0 | 16920.0 | EF026075.1 | 12216 | Viruses | Pisuviricota | Stelpaviricetes | Patatavirales | Potyviridae | Potyvirus | Potato virus Y |
@@ -112,6 +112,7 @@ Non-aligned reads to the host genome are aligned to viral genomes using a progra
 | NODE_30_length_843_cov_23.440355 | XM_023172897.1 | 99.524 | 840 | 4 | 0 | 4 | 843 | 3601 | 2762 | 0.0 | 1530.0 | XM_023172897.1 | 7539 | Eukaryota | Arthropoda | Insecta | Coleoptera | Chrysomelidae | Leptinotarsa | Leptinotarsa decemlineata |
 | NODE_32_length_833_cov_24.933162 | XM_011070431.1 | 71.935 | 367 | 87 | 12 | 209 | 567 | 2246 | 1888 | 2.49e-14 | 93.5 | XM_011070431.1 | 103372 | Eukaryota | Arthropoda | Insecta | Hymenoptera | Formicidae | Acromyrmex | Acromyrmex echinatior |
 | NODE_32_length_833_cov_24.933162 | XM_011070430.1 | 71.935 | 367 | 87 | 12 | 209 | 567 | 2303 | 1945 | 2.49e-14 | 93.5 | XM_011070430.1 | 103372 | Eukaryota | Arthropoda | Insecta | Hymenoptera | Formicidae | Acromyrmex | Acromyrmex echinatior |
-```
+  
+  
 #### 3. Classification table based on the BLASTx (NCBI nr). 
 #### 4. Classification table based on the BLASTx (NCBI nr). 
