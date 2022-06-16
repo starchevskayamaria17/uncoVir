@@ -95,19 +95,19 @@ Non-aligned reads to the host genome are aligned to viral genomes using a progra
 ## 4. Results
 #### 1. Statistics. 
 
-| Name | Number of reads or contigs | Total length of reads or contigs, bp | Minimum length of reads or contigs | Average length of reads or contigs | Maximum length of reads or contigs | Q1 | Q2 | Q3 | N50 | Q20(%) | Q30(%) |
+| Name ||||||||||| Number of reads or contigs | Total length of reads or contigs, bp | Minimum length of reads or contigs | Average length of reads or contigs | Maximum length of reads or contigs | Q1 | Q2 | Q3 | N50 | Q20(%) | Q30(%) |
 |---------------------------|----|----|----|----|----|----|----|----|----|----|----|
-| raw forward/reverse read | 4629691 | 420444472 | 80 | 90.8 | 91 | 91.0 | 91.0 | 91.0 | 91 | 99.97 | 99.11 |
-| clipped forward/reverse read | 4629691 | 419997824 | 76 | 90.7 | 91 | 91.0 | 91.0 | 91.0 | 91 | 99.97 | 99.11 |
-| clipped unpair forward read | 0 | 0 | 0 | 0.0 | 0 | 0.0 | 0.0 | 0.0 | 0 | 0.0 | 0.0 |
-| clipped unpair reverse read | 0 | 0 | 0 | 0.0 | 0 | 0.0 | 0.0 | 0.0 | 0 | 0.0 | 0.0 |
-| free contamination forward/reverse read | 2001870 | 181674797 | 78 | 90.8 | 91 | 91.0 | 91.0 | 91.0 | 91 | 99.97 | 99.06 |
-| non-aligned Ldec forward/reverse read | 40508 | 3675362 | 78 | 90.7 | 91 | 91.0 | 91.0 | 91.0 | 91 | 99.96 | 99.01 |
-| raw contigs | 1211 | 422400 | 59 | 348.8 | 9215 | 235.0 | 283.0 | 379.0 | 344 | 0.0 | 0.0 |
-| length and coverage contigs over 500 and 20 respectively | 47 | 48991 | 500 | 1042.4 | 9215 | 607.5 | 716.0 | 838.0 | 888 | 0.0 | 0.0 |
-| contigs unclassified by the BLASTn | 21 | 17751 | 515 | 845.3 | 1654 | 712.0 | 745.0 | 921.0 | 776 | 0.0 | 0.0 |
-| contigs classified as viral by the BLASTn | 2 | 15041 | 5826 | 7520.5 | 9215 | 5826.0 | 7520.5 | 9215.0 | 9215 | 0.0 | 0.0 |
-| contigs unclassified by the BLASTx | 6 | 4255 | 615 | 709.2 | 783 | 659.0 | 723.0 | 752.0 | 745 | 0.0 | 0.0 |
+| raw forward/reverse read ||||||||||| 4629691 | 420444472 | 80 | 90.8 | 91 | 91.0 | 91.0 | 91.0 | 91 | 99.97 | 99.11 |
+| clipped forward/reverse read ||||||||||| 4629691 | 419997824 | 76 | 90.7 | 91 | 91.0 | 91.0 | 91.0 | 91 | 99.97 | 99.11 |
+| clipped unpair forward read ||||||||||| 0 | 0 | 0 | 0.0 | 0 | 0.0 | 0.0 | 0.0 | 0 | 0.0 | 0.0 |
+| clipped unpair reverse read ||||||||||| 0 | 0 | 0 | 0.0 | 0 | 0.0 | 0.0 | 0.0 | 0 | 0.0 | 0.0 |
+| free contamination forward/reverse read ||||||||||| 2001870 | 181674797 | 78 | 90.8 | 91 | 91.0 | 91.0 | 91.0 | 91 | 99.97 | 99.06 |
+| non-aligned Ldec forward/reverse read ||||||||||| 40508 | 3675362 | 78 | 90.7 | 91 | 91.0 | 91.0 | 91.0 | 91 | 99.96 | 99.01 |
+| raw contigs ||||||||||| 1211 | 422400 | 59 | 348.8 | 9215 | 235.0 | 283.0 | 379.0 | 344 | 0.0 | 0.0 |
+| length and coverage contigs over 500 and 20 respectively ||||||||||| 47 | 48991 | 500 | 1042.4 | 9215 | 607.5 | 716.0 | 838.0 | 888 | 0.0 | 0.0 |
+| contigs unclassified by the BLASTn ||||||||||| 21 | 17751 | 515 | 845.3 | 1654 | 712.0 | 745.0 | 921.0 | 776 | 0.0 | 0.0 |
+| contigs classified as viral by the BLASTn ||||||||||| 2 | 15041 | 5826 | 7520.5 | 9215 | 5826.0 | 7520.5 | 9215.0 | 9215 | 0.0 | 0.0 |
+| contigs unclassified by the BLASTx ||||||||||| 6 | 4255 | 615 | 709.2 | 783 | 659.0 | 723.0 | 752.0 | 745 | 0.0 | 0.0 |
 
 Completeness of assembly of unfiltered contigs: 84.4623 
 
