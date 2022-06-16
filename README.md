@@ -98,7 +98,7 @@ Non-aligned reads to the host genome are aligned to viral genomes using a progra
   
   
 | qseqid | sseqid | pident | length | mismatch | gapopen | qstart | qend | sstart | send | evalue | bitscore | accession.version | taxid | kindom | phylum | class | order | family | genus | species |
-|--------|--------|--------|--------|--------|--------|--------|--------|--------|--------|--------|--------|--------|--------|--------|--------|--------|--------|--------|--------|
+|--------|--------|--------|--------|--------|--------|--------|--------|--------|--------|--------|--------|--------|--------|--------|--------|--------|--------|--------|--------|--------|
 | NODE_1_length_9215_cov_18.424017 | EF026075.1 | 99.826 | 9210 | 16 | 0 | 1 | 9210 | 484 | 9693 | 0.0 | 16920.0 | EF026075.1 | 12216 | Viruses | Pisuviricota | Stelpaviricetes | Patatavirales | Potyviridae | Potyvirus | Potato virus Y |
 | NODE_1_length_9215_cov_18.424017 | MN216357.1 | 99.815 | 9210 | 17 | 0 | 1 | 9210 | 439 | 9648 | 0.0 | 16914.0 | MN216357.1 | 12216 | Viruses | Pisuviricota | Stelpaviricetes | Patatavirales | Potyviridae | Potyvirus | Potato virus Y |
 | NODE_2_length_5826_cov_22.717207 | AB364946.1 | 98.681 | 1289 | 17 | 0 | 4479 | 5767 | 1 | 1289 | 0.0 | 2287.0 | AB364946.1 | 12169 | Viruses | Kitrinoviricota | Alsuviricetes | Tymovirales | Betaflexiviridae | Carlavirus | Potato virus S |
