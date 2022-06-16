@@ -94,6 +94,23 @@ Non-aligned reads to the host genome are aligned to viral genomes using a progra
 
 ## 4. Results
 #### 1. Statistics. 
-#### 2. Classification table based on the BLASTx (NCBI nr). 
+#### 2. Classification table based on the BLASTn (NCBI nt).
+
+| qseqid | sseqid | pident | length | mismatch | gapopen | qstart | qend | sstart | send | evalue | bitscore | accession.version | taxid | kindom | phylum | class | order | family | genus | species
+|--------||--------||--------||--------||--------||--------||--------||--------||--------||--------||--------||--------||--------||--------||--------||--------||--------||--------||--------||--------|
+| NODE_1_length_9215_cov_18.424017 | EF026075.1 | 99.826 | 9210 | 16 | 0 | 1 | 9210 | 484 | 9693 | 0.0 | 16920.0 | EF026075.1 | 12216 | Viruses | Pisuviricota | Stelpaviricetes | Patatavirales | Potyviridae | Potyvirus | Potato virus Y
+| NODE_1_length_9215_cov_18.424017 | MN216357.1 | 99.815 | 9210 | 17 | 0 | 1 | 9210 | 439 | 9648 | 0.0 | 16914.0 | MN216357.1 | 12216 | Viruses | Pisuviricota | Stelpaviricetes | Patatavirales | Potyviridae | Potyvirus | Potato virus Y
+| NODE_2_length_5826_cov_22.717207 | AB364946.1 | 98.681 | 1289 | 17 | 0 | 4479 | 5767 | 1 | 1289 | 0.0 | 2287.0 | AB364946.1 | 12169 | Viruses | Kitrinoviricota | Alsuviricetes | Tymovirales | Betaflexiviridae | Carlavirus | Potato virus S
+| NODE_2_length_5826_cov_22.717207 | AY512653.1 | 96.082 | 1276 | 50 | 0 | 4551 | 5826 | 1 | 1276 | 0.0 | 2080.0 | AY512653.1 | 12169 | Viruses | Kitrinoviricota | Alsuviricetes | Tymovirales | Betaflexiviridae | Carlavirus | Potato virus S
+| NODE_2_length_5826_cov_22.717207 | S45593.1 | 94.973 | 1313 | 57 | 2 | 4523 | 5826 | 1 | 1313 | 0.0 | 2050.0 | S45593.1 | 12169 | Viruses | Kitrinoviricota | Alsuviricetes | Tymovirales | Betaflexiviridae | Carlavirus | Potato virus S
+| NODE_9_length_1079_cov_11.799805 | DQ631667.1 | 98.072 | 830 | 16 | 0 | 61 | 890 | 1 | 830 | 0.0 | 1445.0 | DQ631667.1 | 7539 | Eukaryota | Arthropoda | Insecta | Coleoptera | Chrysomelidae | Leptinotarsa | Leptinotarsa decemlineata
+| NODE_9_length_1079_cov_11.799805 | DQ631668.1 | 98.777 | 736 | 9 | 0 | 61 | 796 | 1 | 736 | 0.0 | 1310.0 | DQ631668.1 | 7539 | Eukaryota | Arthropoda | Insecta | Coleoptera | Chrysomelidae | Leptinotarsa | Leptinotarsa decemlineata
+| NODE_9_length_1079_cov_11.799805 | DQ631669.1 | 100.0 | 664 | 0 | 0 | 61 | 724 | 1 | 664 | 0.0 | 1227.0 | DQ631669.1 | 7539 | Eukaryota | Arthropoda | Insecta | Coleoptera | Chrysomelidae | Leptinotarsa | Leptinotarsa decemlineata
+| NODE_17_length_978_cov_12.575298 | HM175847.1 | 99.284 | 978 | 7 | 0 | 1 | 978 | 64 | 1041 | 0.0 | 1768.0 | HM175847.1 | 7539 | Eukaryota | Arthropoda | Insecta | Coleoptera | Chrysomelidae | Leptinotarsa | Leptinotarsa decemlineata
+| NODE_26_length_888_cov_13.318127 | XM_023170369.1 | 99.81 | 527 | 1 | 0 | 362 | 888 | 813 | 287 | 0.0 | 968.0 | XM_023170369.1 | 7539 | Eukaryota | Arthropoda | Insecta | Coleoptera | Chrysomelidae | Leptinotarsa | Leptinotarsa decemlineata
+| NODE_30_length_843_cov_23.440355 | XM_023172897.1 | 99.524 | 840 | 4 | 0 | 4 | 843 | 3601 | 2762 | 0.0 | 1530.0 | XM_023172897.1 | 7539 | Eukaryota | Arthropoda | Insecta | Coleoptera | Chrysomelidae | Leptinotarsa | Leptinotarsa decemlineata
+| NODE_32_length_833_cov_24.933162 | XM_011070431.1 | 71.935 | 367 | 87 | 12 | 209 | 567 | 2246 | 1888 | 2.49e-14 | 93.5 | XM_011070431.1 | 103372 | Eukaryota | Arthropoda | Insecta | Hymenoptera | Formicidae | Acromyrmex | Acromyrmex echinatior
+| NODE_32_length_833_cov_24.933162 | XM_011070430.1 | 71.935 | 367 | 87 | 12 | 209 | 567 | 2303 | 1945 | 2.49e-14 | 93.5 | XM_011070430.1 | 103372 | Eukaryota | Arthropoda | Insecta | Hymenoptera | Formicidae | Acromyrmex | Acromyrmex echinatior
+
 #### 3. Classification table based on the BLASTx (NCBI nr). 
 #### 4. Classification table based on the BLASTx (NCBI nr). 
