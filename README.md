@@ -108,8 +108,8 @@ Non-aligned reads to the host genome are aligned to viral genomes using a progra
 | contigs unclassified by the BLASTn | 21 | 17751 | 515 | 845.3 | 1654 | 712.0 | 745.0 | 921.0 | 776 | 0.0 | 0.0 |
 | contigs classified as viral by the BLASTn | 2 | 15041 | 5826 | 7520.5 | 9215 | 5826.0 | 7520.5 | 9215.0 | 9215 | 0.0 | 0.0 |
 | contigs unclassified by the BLASTx | 6 | 4255 | 615 | 709.2 | 783 | 659.0 | 723.0 | 752.0 | 745 | 0.0 | 0.0 |
-| Completeness of assembly of unfiltered contigs: |
-| 84.4623 |
+
+Completeness of assembly of unfiltered contigs: 84.4623 
 
 
 #### 2. Classification table based on the BLASTn (NCBI nt).
