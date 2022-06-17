@@ -5,6 +5,7 @@ The pipeline is designed to classify the viral sequences of raw paired-end reads
 ## Dependence
 
 Anaconda (version > 4.12)
+
 Python (version > 3.9.9) 
 
 Installation of additional programs is not required.
@@ -22,7 +23,7 @@ conda activate snakemake
 Before starting the pipeline, refer to paragraph 2 to create a configuration file and build databases. When everything is ready do: 
 
 ```
-snakemake -s snakefile -j 2 #j - number of threads
+snakemake -s snakefile -j 2                                     #j - number of threads
 ```
 
 ## 2. Preparation of reference genomes and databases. Creating a configuration file. 
