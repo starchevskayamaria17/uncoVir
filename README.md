@@ -96,9 +96,32 @@ Merge all viral reference genomes into one file (viral.fasta) and create bowtie2
 ```
 bowtie2-build viral.fasta viral_bowtie2
 ```
+We recommend using a variety of virus databases with a uniform distribution of virus strains, removing duplicate sequences first.
 
- cat dead_prot.accession2taxid pdb.accession2taxid prot.accession2taxid > prot_db.accession2taxid 
+### 5) Download taxonomy archives
+
+To get taxonomy-marked BLAST and alignment reporting tables, you need archives that store NCBI Taxonomy. Please note that accession ID databases
+sequences (especially amino acids) depend on which database you are using. Make sure accession ID match.
+
+Download and unzip taxonomy archive:
+```
+wget https://ftp.ncbi.nlm.nih.gov/pub/taxonomy/new_taxdump/new_taxdump.zip
+unzip new_taxdump.zip
+```
+Download and unzip archive accession ID for database of NCBI nt:
+```
 wget https://ftp.ncbi.nlm.nih.gov/pub/taxonomy/accession2taxid/nucl_gb.accession2taxid.gz
+gunzip nucl_gb.accession2taxid.gz
+```
+
+Download and unzip archives accession ID and merge its for database of NCBI nr:
+```
+wget https://ftp.ncbi.nlm.nih.gov/pub/taxonomy/accession2taxid/dead_prot.accession2taxid.gz
+wget https://ftp.ncbi.nlm.nih.gov/pub/taxonomy/accession2taxid/pdb.accession2taxid.gz
+wget https://ftp.ncbi.nlm.nih.gov/pub/taxonomy/accession2taxid/prot_db.accession2taxid.gz
+gunzip dead_prot.accession2taxid.gz pdb.accession2taxid.gz prot_db.accession2taxid.gz
+cat dead_prot.accession2taxid pdb.accession2taxid prot.accession2taxid > prot_db.accession2taxid 
+```
 
 ## 5. Description of the pipeline
 
