@@ -2,7 +2,7 @@
 
 The pipeline is designed to classify the viral sequences of raw paired-end reads of NGS data obtained on the Illumina platform. The main pipeline strategy is the assembly of free-contamination and free from the host genome reads into contigs with their subsequent classification by BLAST tools. Additionally, for classification, the pipeline uses nucleotide alignment of reads against databases of viral genomes and analysis of the k-mer spectrum. The pipeline is written in Snakemake.
 
-## Dependence
+## 1. Dependence
 
 Anaconda (version > 4.12)
 
@@ -10,7 +10,7 @@ Python (version > 3.9.9)
 
 Installation of additional programs is not required.
 
-## Setting the environment
+## 2. Setting the environment
 
 After downloading the directory, you need to set up a working environment in which all the necessary software packages are installed for the pipeline to work. To do this, run:
 
@@ -18,15 +18,15 @@ After downloading the directory, you need to set up a working environment in whi
 conda env create snakemake.yml 
 conda activate snakemake
 ```
-## Pipeline launch
+## 3. Pipeline launch
 
-Before starting the pipeline, refer to paragraph 2 to create a configuration file and build databases. When everything is ready do: 
+Before starting the pipeline, refer to paragraph 4 to create a configuration file and build databases. When everything is ready do: 
 
 ```
 snakemake -s snakefile -j 2                                     #j - number of threads
 ```
 
-## 2. Preparation of reference genomes and databases. Creating a configuration file. 
+## 4. Preparation of reference genomes and databases. Creating a configuration file. 
 
 ### 1) Reference genome indexing
 
@@ -95,7 +95,7 @@ kraken2-build --build --db $DBNAME
  cat dead_prot.accession2taxid pdb.accession2taxid prot.accession2taxid > prot_db.accession2taxid 
 wget https://ftp.ncbi.nlm.nih.gov/pub/taxonomy/accession2taxid/nucl_gb.accession2taxid.gz
 
-## 3. Description of the pipeline
+## 5. Description of the pipeline
 
 As input files, the pipeline receives paired-end sequencing data in fastq-format. The work of the pipeline can be divided into the following stages (Fig. 1):
 #### 1. Data preprocessing. 
@@ -113,7 +113,7 @@ Non-aligned reads to the host genome are classified by the program Kraken2 again
 #### 7. Alignment of reads on virus genomes. 
 Non-aligned reads to the host genome are aligned to viral genomes using a program Bowtie2. This method of classification makes it possible to estimate how evenly the viral genome is covered by reads and to take into account reads not collected into contigs.
 
-## 4. Results
+## 6. Results
 #### 1. Statistics. 
 
 | Name | Number of reads or contigs | Total length of reads or contigs, bp | Minimum length of reads or contigs | Average length of reads or contigs | Maximum length of reads or contigs | Q1 | Q2 | Q3 | N50 | Q20(%) | Q30(%) |
