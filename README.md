@@ -90,7 +90,12 @@ Finalize the database
 kraken2-build --build --db $DBNAME
 ```
 
-### 4) 
+### 4) Creating databases for classification using alignments by Bowtie2
+
+Merge all viral reference genomes into one file (viral.fasta) and create bowtie2 index database (database name: viral_bowtie2):
+```
+bowtie2-build viral.fasta viral_bowtie2
+```
 
  cat dead_prot.accession2taxid pdb.accession2taxid prot.accession2taxid > prot_db.accession2taxid 
 wget https://ftp.ncbi.nlm.nih.gov/pub/taxonomy/accession2taxid/nucl_gb.accession2taxid.gz
