@@ -1,10 +1,28 @@
-# Pipeline for viruses detection in NGS data. 
+# Pipeline for viruses detection in NGS data 
 
-## Installation and launch
+The pipeline is designed to classify the viral sequences of raw paired-end reads of NGS data obtained on the Illumina platform. The main pipeline strategy is the assembly of free-contamination and free from the host genome reads into contigs with their subsequent classification by BLAST tools. Additionally, for classification, the pipeline uses nucleotide alignment of reads against databases of viral genomes and analysis of the k-mer spectrum. The pipeline is written in Snakemake.
 
+## Dependence
+
+Anaconda (version > 4.12)
+Python (version > 3.9.9) 
+
+Installation of additional programs is not required.
+
+## Setting the environment
+
+After downloading the directory, you need to set up a working environment in which all the necessary software packages are installed for the pipeline to work. To do this, run:
 
 ```
-conda env create snakemake.yml
+conda env create snakemake.yml 
+conda activate snakemake
+```
+## Pipeline launch
+
+Before starting the pipeline, refer to paragraph 2 to create a configuration file and build databases. When everything is ready do: 
+
+```
+snakemake -s snakefile -j 2 #j - number of threads
 ```
 
 ## 2. Preparation of reference genomes and databases. Creating a configuration file. 
@@ -72,6 +90,8 @@ kraken2-build --build --db $DBNAME
 ```
 
 ### 4) 
+
+ cat dead_prot.accession2taxid pdb.accession2taxid prot.accession2taxid > prot_db.accession2taxid 
 wget https://ftp.ncbi.nlm.nih.gov/pub/taxonomy/accession2taxid/nucl_gb.accession2taxid.gz
 
 ## 3. Description of the pipeline
