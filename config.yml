@@ -1,0 +1,40 @@
+Specify your paths:
+
+samples: "Ldec/samples/"
+tmp: "Ldec/tmp/"
+ref: "Ldec/ref/"
+results: "Ldec/results/"
+adapters: '~/miniconda3/envs/snakemake/share/trimmomatic-0.39-2/adapters/NexteraPE-PE.fa'
+ref_ldec: 'ref/'
+ref_ldec_name: 'GCF_000500325.1_Ldec_2.0_genomic'
+ref_hg38: 'ref/'
+ref_hg38_name: 'GCF_000001405.38_GRCh38.p12_genomic'
+db_univec_path: 'univec/'
+db_univec_name: 'UniVec_Core.db'
+db_nt: 'nt/' 
+db_nt_name: nt
+db_nr: 'nr/'
+db_nr_name: nr
+db_kraken: 'dbVir/dbVir/'
+db_bowtie2: 'dbVir/dbVir'
+db_bwa: 'dbVir/dbVir.fasta'
+db_nucl_accession: 'taxonomy/accession2taxid/nucl_gb.accession2taxid'
+db_prot_accession: 'taxonomy/accession2taxid/prot_db.accession2taxid'
+db_taxid: 'taxonomy/'
+
+#Scripts:
+blast_taxonomy: "scripts/blast_taxonomy.py"
+rename: "scripts/rename_stats.py"
+alignment_taxonomy: 'scripts/alignment_taxonomy.py'
+
+#Threads:
+threads_bwa: 140
+threads_samtools: 140
+threads_blast: 140
+threads_spades: 60
+threads_kraken: 60
+threads_bowtie2: 150
+seqkit: 15
+
+#Memory:
+memory_spades: 1000
