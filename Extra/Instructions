@@ -76,3 +76,5 @@ done
  18. Фильтрация fastq по именам: 
 for i in *fastq; do seqtk seq -L 150 -a $i | grep -E -i -A 1 "Flavi|Tick|Trinbago|Dengue|Zika|Nile|fever|Langat|encephalitis|Nounane|Usutu|Bagaza|adeno" | grep -v '^--$' > $i.filter.fasta ; done 
  
+for i in *.fasta ; do seqkit rmdup -s $i > $i.filter.dupl.fasta ; done
+ 
