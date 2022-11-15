@@ -72,3 +72,7 @@ done
 17. Удалить определенное число символов из определенной колонки
 (удалит 3 символа из второй колонки)
  awk -v ncr=2 '{$2=substr($2,0,length($2)-ncr)}1' file.txt 
+ 
+ 18. Фильтрация fastq по именам: 
+for i in *fastq; do seqtk seq -L 150 -a $i | grep -E -i -A 1 "Flavi|Tick|Trinbago|Dengue|Zika|Nile|fever|Langat|encephalitis|Nounane|Usutu|Bagaza|adeno" | grep -v '^--$' > $i.filter.fasta ; done 
+ 
