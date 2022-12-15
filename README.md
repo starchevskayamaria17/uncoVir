@@ -122,7 +122,7 @@ cat dead_prot.accession2taxid pdb.accession2taxid prot.accession2taxid > prot_db
 
 ## 5. Description of the pipeline
 
-As input files, the pipeline receives the paired-end sequencing data in fastq format. The pipeline can be divided into the following stages (Fig. 1):
+As input files, the pipeline receives the paired-end sequencing data in fastq format. The pipeline can be divided into the following stages:
 #### 1. Data preprocessing. 
 The *trimmomatic* tool performs preliminary cleaning of the data from adapters (the path to the file with adapters must be specified in the config file) and low-quality reads with standard parameters: SLIDINGWINDOW:6:10 LEADING:13 TRAILING:13 MINLEN:50.
 #### 2. Contamination removal. 
@@ -137,6 +137,8 @@ The remaining contigs (selected by length and coverage) are classified by *BLAST
 The reads non-aligned to the host genome are classified with *Kraken2* against Kraken2 databases (see p.2.3). 
 #### 7. Alignment of reads on virus genomes. 
 The reads non-aligned to the host genome are aligned to viral genomes with *Bowtie2*. This allows to estimate how evenly the viral genome is covered by the matched reads and to take into account the reads that were not assembled into contigs.
+
+![alt "Pipeline scheme"](https://github.com/starchevskayamaria17/uncoVir/blob/master/misc/pipeline.png?raw=true)
 
 ## 6. Results
 #### 1. Statistics. 
