@@ -24,7 +24,7 @@ Before starting the pipeline, refer to paragraph 4 to create a configuration fil
 snakemake -s snakefile -j 2                                     #j - number of threads
 ```
 
-## 4. Preparing reference genomes and databases, creating configuration file 
+## 4. Preparing the reference genomes and databases, creating the configuration file 
 
 ### 1) Reference genome indexing
 
@@ -61,7 +61,7 @@ makeblastdb -in nt -dbtype nucl -out nt
 makeblastdb -in nr -dbtype prot -out nr
 ```
 
-### 3) Creating databases for classification with Kraken2
+### 3) Creating the databases for classification with Kraken2
 
 As an example, the viral nucleotide sequences from NCBI RefSeq database are used. You can create a custom database for any nucleotide sequences in fasta format.
 
