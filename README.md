@@ -2,7 +2,7 @@
 
 The pipeline was designed to classify the viral sequences from raw NGS paired-end reads obtained on the Illumina platform. The main pipeline strategy is the assembly of contamination-free reads into contigs with their subsequent classification by BLAST tools. Additionally the pipeline makes the k-mer analysis with Kraken2 and aligns the reads against the database of viral genomes. The pipeline was created with Snakemake.
 
-## 1. Dependence
+## 1. Dependences
 
 Anaconda (version > 4.12)
 
@@ -24,7 +24,7 @@ Before starting the pipeline, refer to paragraph 4 to create a configuration fil
 snakemake -s snakefile -j 2                                     #j - number of threads
 ```
 
-## 4. Preparation of reference genomes and databases. Creating a configuration file. 
+## 4. Preparing reference genomes and databases, creating configuration file 
 
 ### 1) Reference genome indexing
 
