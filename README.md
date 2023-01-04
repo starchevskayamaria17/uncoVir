@@ -126,9 +126,9 @@ As input files, the pipeline receives the paired-end sequencing data in fastq fo
 #### 1. Data preprocessing. 
 The *trimmomatic* tool performs preliminary cleaning of the data from adapters (the path to the file with adapters must be specified in the config file) and low-quality reads with standard parameters: SLIDINGWINDOW:6:10 LEADING:13 TRAILING:13 MINLEN:50.
 #### 2. Contamination removal. 
-Filtering against the human genome using the *bwa-mem* program with parameters: -B 10 -O 17,17 -E 17,17'. Filtering using the *BLASTn* program against a database of synthetic sequences NCBI UniVec with specific parameters: -reward 1 -penalty -5 -gapopen 3 -gapextend 3  -dust yes -soft_masking true -evalue 700 -searchsp 1750000000000.
+Filtering against the human genome using the *Bowtie2* program. Filtering using the *BLASTn* program against a database of synthetic sequences NCBI UniVec with specific parameters: -reward 1 -penalty -5 -gapopen 3 -gapextend 3  -dust yes -soft_masking true -evalue 700 -searchsp 1750000000000.
 #### 3. Selection of non-aligned reads for the host genome.
-Filtering against the host genome using the *bwa-mem* program. Further, **pipeline works only with reads that are non-aligned to the host genome**.
+Filtering against the host genome using the *Bowtie2* program. Further, **pipeline works only with reads that are non-aligned to the host genome**.
 #### 4. Contigs assembly.
 The reads non-aligned to the host genome are assembled using *SPADes* with the option --meta. Be default the contigs are filtered by length over 500 and coverage over 5.
 #### 5. Contigs classification. 
