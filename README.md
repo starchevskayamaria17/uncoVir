@@ -36,10 +36,10 @@ wget https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/001/405/GCA_000001405.28_G
 unzip *.gz
 ```
 
-Index the genomes for subsequent alignment using the program bwa-mem
+Index the genomes for subsequent alignment using the program Bowtie2
 ```
-bwa index GCA_000500325.2_Ldec_2.0_genomic.fna
-bwa index GCA_000001405.28_GRCh38.p13_genomic.fna
+bowtie2-build GCA_000500325.2_Ldec_2.0_genomic.fna GCF_000500325.1_Ldec_2.0_genomic
+bowtie2-build GCA_000001405.28_GRCh38.p13_genomic.fna GCF_000001405.38_GRCh38.p13_genomic
 ```
 
 ### 2) Creating the databases for contamination removal and contigs classification with BLAST tools
